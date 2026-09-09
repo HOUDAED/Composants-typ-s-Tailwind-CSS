@@ -1,10 +1,11 @@
 export type VarianteBouton = 'primaire' | 'secondaire' | 'danger';
-
+export  type TypeButton = "button" | "submit";
 export interface BoutonProps {
   libelle: string;
   variante?: VarianteBouton;
   desactive?: boolean;
   onClick?: () => void;
+  type?: TypeButton;
 }
 
 const stylesParVariante: Record<VarianteBouton, string> = {
