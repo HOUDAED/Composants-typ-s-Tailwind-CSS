@@ -231,7 +231,7 @@ Construire un formulaire contrôlé entièrement typé, avec validation à la so
 
 ## L'écran à obtenir
 
-![Aperçu du résultat attendu](apercu.png)
+![Aperçu du résultat attendu](apercu1.png)
 
 À gauche, le formulaire tel qu'il se présente **après une soumission invalide** : chaque champ fautif porte une bordure rouge et son message juste en dessous. À droite, la liste des inscriptions déjà validées, une `Carte` par inscrit — et ce qu'affiche cette liste quand elle est vide.
 

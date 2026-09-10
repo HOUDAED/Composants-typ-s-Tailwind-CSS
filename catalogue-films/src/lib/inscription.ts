@@ -6,6 +6,10 @@ export interface Inscription {
   cgv: boolean;
 }
 
+export type InscriptionEnregistree = Omit<Inscription, 'motDePasse' | 'confirmation'> & {
+  id: number;
+};
+
 export const valeursInitiales: Inscription = {
   prenom: '',
   email: '',
