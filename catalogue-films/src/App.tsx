@@ -1,24 +1,32 @@
-import { RechercheFilms } from './composants/RechercheFilms';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import type { ReactNode } from 'react';
+import { Layout } from './composants/Layout';
+import { useAuth } from './contextes/AuthContext';
+import { Accueil } from './pages/Accueil';
+import { Connexion } from './pages/Connexion';
+import { DetailFilm } from './pages/DetailFilm';
+import { Favoris } from './pages/Favoris';
+import { PageIntrouvable } from './pages/PageIntrouvable';
+import { Recherche } from './pages/Recherche';
+
+function RouteProtegee({ children }: { children: ReactNode }) {
+  const { pseudo } = useAuth();
+  if (!pseudo) return <Navigate to="/connexion" replace />;
+  return <>{children}</>;
+}
 
 function App() {
   return (
-    <main className="min-h-screen bg-slate-100 px-4 py-8 text-slate-800 md:px-8">
-      <div className="mx-auto max-w-6xl space-y-8">
-        <header className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
-            TP4 · React, TypeScript & API
-          </p>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
-            Recherche de films
-          </h1>
-          <p className="max-w-2xl text-slate-600">
-            Recherchez un titre dans le catalogue OMDb.
-          </p>
-        </header>
-
-        <RechercheFilms />
-      </div>
-    </main>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Accueil />} />
+        <Route path="recherche" element={<Recherche />} />
+        <Route path="films/:id" element={<DetailFilm />} />
+        <Route path="favoris" element={<RouteProtegee><Favoris /></RouteProtegee>} />
+        <Route path="connexion" element={<Connexion />} />
+        <Route path="*" element={<PageIntrouvable />} />
+      </Route>
+    </Routes>
   );
 }
 
