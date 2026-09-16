@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import { Layout } from './composants/Layout';
 import { useAuth } from './contextes/AuthContext';
@@ -11,7 +11,8 @@ import { Recherche } from './pages/Recherche';
 
 function RouteProtegee({ children }: { children: ReactNode }) {
   const { pseudo } = useAuth();
-  if (!pseudo) return <Navigate to="/connexion" replace />;
+  const emplacement = useLocation();
+  if (!pseudo) return <Navigate to="/connexion" state={{ de: emplacement }} replace />;
   return <>{children}</>;
 }
 

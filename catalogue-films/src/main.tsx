@@ -5,15 +5,18 @@ import './index.css'
 import App from './App.tsx'
 import { AuthProvider } from './contextes/AuthContext'
 import { FavorisProvider } from './contextes/FavorisContext'
+import { ThemeProvider } from './contextes/ThemeContext'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthProvider>
-      <FavorisProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </FavorisProvider>
+      <ThemeProvider>
+        <FavorisProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </FavorisProvider>
+      </ThemeProvider>
     </AuthProvider>
   </StrictMode>,
 )

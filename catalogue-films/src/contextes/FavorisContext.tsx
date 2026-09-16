@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, type Dispatch, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useReducer, type Dispatch, type ReactNode } from 'react';
 import type { FilmOmdb } from '../lib/omdb';
 
 export type ActionFavoris =
@@ -26,8 +26,24 @@ interface FavorisContexte {
 
 const Contexte = createContext<FavorisContexte | undefined>(undefined);
 
+function favorisInitiaux(): FilmOmdb[] {
+  const favorisStockes = localStorage.getItem('favoris');
+  if (!favorisStockes) return [];
+
+  try {
+    const favoris = JSON.parse(favorisStockes) as unknown;
+    return Array.isArray(favoris) ? favoris as FilmOmdb[] : [];
+  } catch {
+    return [];
+  }
+}
+
 export function FavorisProvider({ children }: { children: ReactNode }) {
-  const [favoris, dispatch] = useReducer(reducerFavoris, []);
+  const [favoris, dispatch] = useReducer(reducerFavoris, undefined, favorisInitiaux);
+
+  useEffect(() => {
+    localStorage.setItem('favoris', JSON.stringify(favoris));
+  }, [favoris]);
 
   return <Contexte.Provider value={{ favoris, dispatch }}>{children}</Contexte.Provider>;
 }

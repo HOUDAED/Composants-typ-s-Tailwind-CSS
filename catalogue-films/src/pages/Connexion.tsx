@@ -4,7 +4,7 @@ import { Bouton } from '../composants/Bouton';
 import { useAuth } from '../contextes/AuthContext';
 
 interface EtatConnexion {
-  de?: { pathname: string };
+  de?: { pathname: string; search?: string; hash?: string };
 }
 
 export function Connexion() {
@@ -19,7 +19,10 @@ export function Connexion() {
     if (!pseudoNettoye) return;
 
     connecter(pseudoNettoye);
-    const destination = (emplacement.state as EtatConnexion | null)?.de?.pathname ?? '/';
+    const destinationInfo = (emplacement.state as EtatConnexion | null)?.de;
+    const destination = destinationInfo
+      ? `${destinationInfo.pathname}${destinationInfo.search ?? ''}${destinationInfo.hash ?? ''}`
+      : '/';
     naviguer(destination, { replace: true });
   };
 

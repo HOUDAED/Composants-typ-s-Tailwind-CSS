@@ -2,6 +2,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import { Bouton } from './Bouton';
 import { useAuth } from '../contextes/AuthContext';
 import { useFavoris } from '../contextes/FavorisContext';
+import { useTheme } from '../contextes/ThemeContext';
 
 const classeLien = ({ isActive }: { isActive: boolean }) =>
   isActive
@@ -11,6 +12,7 @@ const classeLien = ({ isActive }: { isActive: boolean }) =>
 export function Layout() {
   const { pseudo, deconnecter } = useAuth();
   const { favoris } = useFavoris();
+  const { theme, basculer } = useTheme();
 
   return (
     <div className="min-h-screen bg-slate-100 text-slate-800">
@@ -27,6 +29,11 @@ export function Layout() {
             </NavLink>
           </nav>
           <div className="flex items-center gap-3 text-sm">
+            <Bouton
+              libelle={theme === 'clair' ? 'Mode sombre' : 'Mode clair'}
+              variante="secondaire"
+              onClick={basculer}
+            />
             {pseudo ? (
               <>
                 <span className="hidden text-slate-500 sm:inline">Connecté en tant que <strong className="text-slate-800">{pseudo}</strong></span>
