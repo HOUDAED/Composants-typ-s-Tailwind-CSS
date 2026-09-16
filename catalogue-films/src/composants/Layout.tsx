@@ -53,9 +53,7 @@ export function Layout() {
       </main>
 
       <footer className="border-t border-slate-200 bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-5 text-sm text-slate-500 md:px-8">
-          CineScope · Recherche de films avec OMDb
-        </div>
+        <div className="mx-auto max-w-6xl px-4 py-5 text-sm text-slate-500 md:px-8" />
       </footer>
     </div>
   );
