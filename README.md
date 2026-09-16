@@ -564,7 +564,7 @@ Reprendre le TP de recherche OMDB fait en JavaScript vanilla et le réécrire en
 
 ## L'écran à obtenir
 
-![Aperçu du résultat attendu](apercu.png)
+![Aperçu du résultat attendu](apercu2.png)
 
 Un champ de recherche, et en dessous **un seul de ces quatre affichages à la fois** : l'invitation quand le champ est vide, « Chargement… » pendant la requête, le message d'erreur si elle échoue, ou la grille de résultats. Le cinquième cas — « aucun film ne correspond » — est celui qu'on oublie, et c'est le premier que voit un utilisateur qui tape n'importe quoi.
 
